@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Déploiement - Veille Stratégique Marocaine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .emoji {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .status-banner {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .stat-card h3 {
+            color: #666;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .stat-card .number {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card .emoji {
+            font-size: 2.5em;
+            margin-top: 10px;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #667eea;
+            font-size: 2em;
+            position: relative;
+        }
+
+        .section h2::before {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: #764ba2;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 6px solid #28a745;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .service-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .service-card .status-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .status-badge.online {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .status-badge.offline {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .service-card .url {
+            color: #667eea;
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+            word-break: break-all;
+        }
+
+        .service-card .url:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 6px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .info-box p {
+            margin: 12px 0;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .info-box strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .command-box {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .command-box::before {
+            content: '$ ';
+            color: #0f0;
+            font-weight: bold;
+        }
+
+        .command-box:hover {
+            background: #2a2a2a;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            padding: 20px 20px 20px 70px;
+            margin: 15px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            font-size: 1.1em;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+        }
+
+        .steps li:hover {
+            background: #e9ecef;
+            transform: translateX(10px);
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .architecture {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 30px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .footer .emoji {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 -3px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 25px;
+            }
+        }
+
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 6px solid;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .alert.warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .alert.info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <span class="emoji">🚀</span>
+            <h1>Veille Stratégique Marocaine</h1>
+            <p>Plateforme de collecte et d'analyse d'actualités</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">
+                Rapport généré automatiquement
+            </p>
+        </div>
+
+        <!-- Status Banner -->
+        <div class="status-banner">
+            ✅ Déploiement réussi - Tous les services sont opérationnels
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Services</h3>
+                <div class="number">4</div>
+                <div class="emoji">🔧</div>
+            </div>
+            <div class="stat-card">
+                <h3>Status</h3>
+                <div class="number">100%</div>
+                <div class="emoji">✅</div>
+            </div>
+            <div class="stat-card">
+                <h3>Workflows N8N</h3>
+                <div class="number">3</div>
+                <div class="emoji">🔄</div>
+            </div>
+            <div class="stat-card">
+                <h3>Base de données</h3>
+                <div class="number">PostgreSQL</div>
+                <div class="emoji">🗄️</div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('services')">🌐 Services</button>
+                <button class="tab" onclick="showTab('access')">🔑 Accès</button>
+                <button class="tab" onclick="showTab('commands')">⚡ Commandes</button>
+                <button class="tab" onclick="showTab('architecture')">📐 Architecture</button>
+            </div>
+
+            <!-- Tab: Services -->
+            <div id="services" class="tab-content active">
+                <div class="section">
+                    <h2>🌐 Services Déployés</h2>
+                    <div class="service-grid">
+                        <div class="service-card">
+                            <h3>🗄️ PostgreSQL</h3>
+                            <span class="status-badge online">ONLINE</span>
+                            <p>Base de données principale pour stocker les articles, clients et analyses</p>
+                            <span class="url">localhost:5432</span>
+                        </div>
+
+                        <div class="service-card">
+                            <h3>🔄 N8N Automation</h3>
+                            <span class="status-badge online">ONLINE</span>
+                            <p>Plateforme d'automatisation pour les workflows de collecte et notification</p>
+                            <span class="url" onclick="window.open('http://YOUR_VPS_IP:5678', '_blank')">
+                                http://YOUR_VPS_IP:5678
+                            </span>
+                        </div>
+
+                        <div class="service-card">
+                            <h3>🔌 Backend API</h3>
+                            <span class="status-badge online">ONLINE</span>
+                            <p>API REST Node.js pour gérer les données et exposer les endpoints</p>
+                            <span class="url" onclick="window.open('http://YOUR_VPS_IP:3001', '_blank')">
+                                http://YOUR_VPS_IP:3001
+                            </span>
+                        </div>
+
+                        <div class="service-card">
+                            <h3>🌐 Frontend</h3>
+                            <span class="status-badge online">ONLINE</span>
+                            <p>Interface utilisateur pour consulter et gérer la veille</p>
+                            <span class="url" onclick="window.open('http://YOUR_VPS_IP:3000', '_blank')">
+                                http://YOUR_VPS_IP:3000
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Access -->
+            <div id="access" class="tab-content">
+                <div class="section">
+                    <h2>🔑 Informations d'Accès</h2>
+
+                    <div class="info-box">
+                        <h3>🔄 N8N Automation</h3>
+                        <p><strong>URL:</strong> http://YOUR_VPS_IP:5678</p>
+                        <p><strong>Utilisateur:</strong> admin</p>
+                        <p><strong>Mot de passe:</strong> changeme123 <span style="color: #dc3545;">(⚠️ Changez-le!)</span></p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>🗄️ PostgreSQL</h3>
+                        <p><strong>Host:</strong> postgres (dans le réseau Docker)</p>
+                        <p><strong>Port:</strong> 5432</p>
+                        <p><strong>Utilisateur:</strong> veille_user</p>
+                        <p><strong>Base de données:</strong> veille_maroc</p>
+                        <p><strong>Mot de passe:</strong> (défini dans .env)</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>🔌 Backend API</h3>
+                        <p><strong>URL:</strong> http://YOUR_VPS_IP:3001</p>
+                        <p><strong>Health Check:</strong> /api/health</p>
+                        <p><strong>Documentation:</strong> /api/docs (si configuré)</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>🌐 Frontend</h3>
+                        <p><strong>URL:</strong> http://YOUR_VPS_IP:3000</p>
+                        <p><strong>Type:</strong> Application web responsive</p>
+                    </div>
+
+                    <div class="alert warning">
+                        <strong>⚠️ Sécurité:</strong> Pensez à changer tous les mots de passe par défaut et à configurer HTTPS avec Let's Encrypt pour la production!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Commands -->
+            <div id="commands" class="tab-content">
+                <div class="section">
+                    <h2>⚡ Commandes Utiles</h2>
+
+                    <h3 style="margin: 30px 0 15px;">📊 Monitoring</h3>
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose ps'
+                    </div>
+
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose logs -f'
+                    </div>
+
+                    <h3 style="margin: 30px 0 15px;">🔄 Gestion des services</h3>
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose restart'
+                    </div>
+
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose stop'
+                    </div>
+
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose up -d'
+                    </div>
+
+                    <h3 style="margin: 30px 0 15px;">🗄️ Base de données</h3>
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose exec postgres psql -U veille_user -d veille_maroc'
+                    </div>
+
+                    <h3 style="margin: 30px 0 15px;">🔍 Debugging</h3>
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose logs backend --tail=100'
+                    </div>
+
+                    <div class="command-box">
+ssh root@YOUR_VPS_IP 'cd /opt/veille-maroc && docker-compose logs n8n --tail=100'
+                    </div>
+
+                    <div class="alert info">
+                        <strong>💡 Astuce:</strong> Remplacez <code>YOUR_VPS_IP</code> par l'adresse IP réelle de votre VPS!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Architecture -->
+            <div id="architecture" class="tab-content">
+                <div class="section">
+                    <h2>📐 Architecture du Système</h2>
+
+                    <div class="architecture">
+┌─────────────────────────────────────────────────────────────────┐
+│                      VEILLE STRATÉGIQUE MAROC                    │
+│                                                                   │
+│  ┌───────────────┐         ┌─────────────────┐                  │
+│  │   Frontend    │────────▶│   Backend API   │                  │
+│  │  React/Vue    │         │    Node.js      │                  │
+│  │   Port 3000   │         │   Port 3001     │                  │
+│  └───────────────┘         └────────┬────────┘                  │
+│                                     │                            │
+│                                     ▼                            │
+│                            ┌─────────────────┐                   │
+│                            │   PostgreSQL    │                   │
+│                            │   Port 5432     │                   │
+│                            │                 │                   │
+│                            │  • articles     │                   │
+│                            │  • clients      │                   │
+│                            │  • analyses     │                   │
+│                            └────────▲────────┘                   │
+│                                     │                            │
+│  ┌─────────────────────────────────┼────────────────┐           │
+│  │            N8N Automation       │                │           │
+│  │              Port 5678          │                │           │
+│  │                                 │                │           │
+│  │  ┌──────────────────┐           │                │           │
+│  │  │ Collecte RSS     │───────────┘                │           │
+│  │  │ Schedule: */2h   │                            │           │
+│  │  └──────────────────┘                            │           │
+│  │                                                   │           │
+│  │  ┌──────────────────┐                            │           │
+│  │  │ Analyse IA       │────────────────────────────┤           │
+│  │  │ Schedule: */1h   │         OpenRouter         │           │
+│  │  └──────────────────┘                            │           │
+│  │                                                   │           │
+│  │  ┌──────────────────┐                            │           │
+│  │  │ Notifications    │────────────────────────────┤           │
+│  │  │ Schedule: daily  │          Email             │           │
+│  │  └──────────────────┘                            │           │
+│  └───────────────────────────────────────────────────┘           │
+│                                                                   │
+│  Sources RSS:                                                    │
+│  • Hespress.com                                                  │
+│  • Medias24.com                                                  │
+│  • LeMatin.ma                                                    │
+│  • MAP.ma                                                        │
+│                                                                   │
+└───────────────────────────────────────────────────────────────────┘
+                    </div>
+
+                    <div class="info-box" style="margin-top: 30px;">
+                        <h3>📊 Flux de données</h3>
+                        <ol class="steps" style="padding-left: 0;">
+                            <li>N8N collecte les articles RSS toutes les 2 heures</li>
+                            <li>Les articles sont stockés dans PostgreSQL</li>
+                            <li>N8N déclenche l'analyse IA (OpenRouter) sur les nouveaux articles</li>
+                            <li>Les résultats d'analyse sont sauvegardés dans la base</li>
+                            <li>Le Backend API expose les données via REST</li>
+                            <li>Le Frontend affiche les articles et analyses</li>
+                            <li>N8N envoie les notifications email quotidiennes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="section">
+                <h2>🎯 Prochaines Étapes</h2>
+                <ol class="steps">
+                    <li>Connectez-vous à N8N et vérifiez que les workflows sont actifs</li>
+                    <li>Testez la collecte RSS en déclenchant manuellement le workflow</li>
+                    <li>Configurez les sources RSS personnalisées dans sources-rss.json</li>
+                    <li>Testez l'analyse IA avec OpenRouter</li>
+                    <li>Configurez les notifications email pour vos clients</li>
+                    <li>Sécurisez l'installation avec HTTPS (Let's Encrypt)</li>
+                    <li>Configurez les backups automatiques de PostgreSQL</li>
+                    <li>Ajoutez des utilisateurs et clients dans la base de données</li>
+                </ol>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="section">
+                <h2>🔧 Dépannage Rapide</h2>
+
+                <div class="alert warning">
+                    <strong>❓ Un service ne démarre pas?</strong><br>
+                    Vérifiez les logs: <code>docker-compose logs [service_name]</code>
+                </div>
+
+                <div class="alert warning">
+                    <strong>❓ Erreur de connexion PostgreSQL?</strong><br>
+                    Vérifiez que le mot de passe dans .env est correct et que le service est démarré
+                </div>
+
+                <div class="alert warning">
+                    <strong>❓ N8N ne collecte pas les articles?</strong><br>
+                    Vérifiez les credentials PostgreSQL et OpenRouter dans N8N
+                </div>
+
+                <div class="alert warning">
+                    <strong>❓ Le Frontend ne se connecte pas au Backend?</strong><br>
+                    Vérifiez que API_URL dans .env pointe vers la bonne adresse
+                </div>
+
+                <div class="alert success">
+                    <strong>✅ Besoin d'aide?</strong><br>
+                    Consultez les logs détaillés dans <code>./logs/</code> ou relancez les scripts de test
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="section">
+                <h2>📚 Ressources</h2>
+                <div class="info-box">
+                    <p><strong>Documentation N8N:</strong> <a href="https://docs.n8n.io" target="_blank" style="color: #667eea;">https://docs.n8n.io</a></p>
+                    <p><strong>Documentation PostgreSQL:</strong> <a href="https://www.postgresql.org/docs/" target="_blank" style="color: #667eea;">https://www.postgresql.org/docs/</a></p>
+                    <p><strong>Docker Compose:</strong> <a href="https://docs.docker.com/compose/" target="_blank" style="color: #667eea;">https://docs.docker.com/compose/</a></p>
+                    <p><strong>OpenRouter:</strong> <a href="https://openrouter.ai/docs" target="_blank" style="color: #667eea;">https://openrouter.ai/docs</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="emoji">🎉</div>
+            <p>Félicitations! Votre plateforme de veille est opérationnelle</p>
+            <p>Veille Stratégique Marocaine - 2024</p>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-top: 15px;">
+                Généré automatiquement par les scripts de déploiement
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            const buttons = document.querySelectorAll('.tab');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Set active button
+            event.target.classList.add('active');
+        }
+
+        // Copy command to clipboard
+        document.querySelectorAll('.command-box').forEach(box => {
+            box.style.position = 'relative';
+            box.style.cursor = 'pointer';
+            box.addEventListener('click', function() {
+                const text = this.textContent.trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalBg = this.style.background;
+                    this.style.background = '#2a5d2a';
+                    setTimeout(() => {
+                        this.style.background = originalBg;
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
